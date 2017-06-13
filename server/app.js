@@ -16,8 +16,8 @@ const app = express();
 
 // app.use(jwtCheck);
 
-// app.use(middleware.morgan('dev'));
-// app.use(middleware.cookieParser());
+app.use(middleware.morgan('dev'));
+app.use(middleware.cookieParser());
 app.use(middleware.bodyParser.urlencoded({extended: false}));
 app.use(middleware.bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
@@ -56,13 +56,13 @@ app.use('/login', routes.login);
 
 
 
-// // *** FOR GRAPH DB
-// app.use('/create-graphDB', routes.createGraphDB)
-// app.use('/populate-full-graphDB', routes.populateFullGraphDB)
-// app.use('/recommendation', routes.recommendation)
-// app.use('/priority-recommendation', routes.priorityRecommendation)
+// *** FOR GRAPH DB
+app.use('/create-graphDB', routes.createGraphDB)
+app.use('/populate-full-graphDB', routes.populateFullGraphDB)
+app.use('/recommendation', routes.recommendation)
+app.use('/priority-recommendation', routes.priorityRecommendation)
 
-// // *** GET MATCHES THROUGH GRAPH DB AND POSTGRES
-// app.use('/get-matches', routes.getMatches)
+// *** GET MATCHES THROUGH GRAPH DB AND POSTGRES
+app.use('/get-matches', routes.getMatches)
 
 module.exports = app;
