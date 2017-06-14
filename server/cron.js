@@ -4,7 +4,7 @@
 // var getMatchesCron = function(){
 //   // will date get-matches to return array 
 //   var user_id = 4; 
-//   var matchesArr = [[2,1],[6,2],[9,3]]
+//   var matchesArr = [[2,1],[9,3],[6,2]]
 
 //   var promises = [];
 

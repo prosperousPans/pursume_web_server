@@ -14,7 +14,7 @@ const app = express();
 // const app = require('../app');
 
 
-// app.use(jwtCheck);
+app.use(jwtCheck);
 
 // app.use(middleware.morgan('dev'));
 // app.use(middleware.cookieParser());

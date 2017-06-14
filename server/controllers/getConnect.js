@@ -2,10 +2,11 @@ const models = require('../../db/models');
 const knex = require('knex')(require('../../knexfile'));
 
 module.exports.getConnect = (req, res) => {
+  console.log("GET CONNECT", req)
+  console.log("GET CONNECT", req.query)
   models.Connection
     .forge()
-    .where({users_b_id: 4})
-    // .count()
+    .where({users_b_id: req.query.users_b_id})
     .fetchAll()
     .then(connection => {
       res.status(200).send(connection);
@@ -17,10 +18,10 @@ module.exports.getConnect = (req, res) => {
 };
 
 module.exports.getAccept = (req, res) => {
+  console.log("GET ACCEPT", req.query)  
   models.Connection
     .forge()
-    .where({users_b_id: 4, status:'accept'})
-    // .count()
+    .where({users_b_id: req.query.users_b_id, status: req.query.status})
     .fetchAll()
     .then(connection => {
       res.status(200).send(connection);
@@ -32,23 +33,24 @@ module.exports.getAccept = (req, res) => {
 };
 
 module.exports.getReason = (req, res) => {
+  console.log("GET REASON", req.query)    
   knex
-  .raw("select reason from connection where users_b_id = 4 and status='accept' group by reason order by count(*) desc limit 1;")
+  .raw("select reason from connection where users_b_id = ? and status = ? group by reason order by count(*) desc limit 1;",
+    [req.query.users_b_id,req.query.status])
   .then(result => {
-    // console.log('result raw', result.rows[0].reason)
     let topReason = result.rows[0].reason;
     res.send(topReason)
   });
-  // knex.raw('SELECT * FROM MyTable WHERE id = ?', [myId])
 };
 
-module.exports.getVertical = (req, res) => {
+module.exports.getVertical = (req, res) => {  
+  console.log("GET VERTICAL", req.query)      
   knex
-  .raw("select vertical from users where id in (select users_a_id from connection where users_b_id = 4 and status='accept') group by vertical order by count(*) desc limit 1;")
+  .raw("select vertical from users where id in (select users_a_id from connection where users_b_id = ? and status = ?) group by vertical order by count(*) desc limit 1;", 
+    [req.query.users_b_id,req.query.status])
   .then(result => {
     console.log('result raw', result.rows[0].vertical)
     let topVertical = result.rows[0].vertical;
     res.send(topVertical)
   });
-  // knex.raw('SELECT * FROM MyTable WHERE id = ?', [myId])
 };

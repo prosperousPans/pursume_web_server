@@ -128,7 +128,7 @@ exports.seed = function (knex, Promise) {
       github_url: 'https://github.com/aszheng',
       linkedin_url: 'https://www.linkedin.com/in/aszheng/',
       image: 'https://avatars0.githubusercontent.com/u/20808751?v=3&s=460',
-      summary: 'I like pandas',
+      summary: 'I like pandas. I like product. I like to code.',
     }).save()
   })
   .error(err => {
@@ -213,6 +213,36 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 2,
+      name: 'professional',
+      role: 'Technology Investment Banking Analyst',
+      description: 'A lot of Excel Stuff',
+      start_date: 2014,
+      end_date: 2015,
+      organization: 'BMO Capital Markets'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 2,
+      name: 'professional',
+      role: 'Investment Banking Summer Analyst',
+      description: 'Baby Excel Stuff',
+      start_date: 2013,
+      end_date: 2013,
+      organization: 'Imperial Capital'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })   
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 2,
       name: 'projects',
       role: 'Pursumé',
       description: 'You see this app? We made this app!',
@@ -228,29 +258,90 @@ exports.seed = function (knex, Promise) {
   .then((experience) => {
     return models.Experience.forge({
       users_id: 2,
-      name: 'education',
-      role: 'Student',
-      description: 'All this learning here',
-      start_date: 2010,
-      end_date: 2014,
-      organization: 'Berkeley'
+      name: 'projects',
+      role: 'Viator',
+      description: 'Itinerary builder for the foodie and social traveler',
+      start_date: 2017,
+      end_date: 2017,
+      organization: 'Hack Reactor'
     }).save()
   })
   .error(err => {
     console.error('ERROR: failed to create experience');
     throw err;
   })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 2,
+      name: 'projects',
+      role: 'Laugh Local.ly',
+      description: 'Airbnb and Eventbrite for local comedians',
+      start_date: 2017,
+      end_date: 2017,
+      organization: 'Hack Reactor'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 2,
+      name: 'projects',
+      role: 'RobinHack',
+      description: 'Dynamic stock portfolio budgeting app built in 48-hours',
+      start_date: 2017,
+      end_date: 2017,
+      organization: 'Hack Reactor'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })     
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 2,
+      name: 'education',
+      role: 'B.S. Business Administration',
+      description: 'Concentration in Entrepreneurship & Technology, Haas External Case Competiton Team',
+      start_date: 2010,
+      end_date: 2014,
+      organization: 'UC Berkeley'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })
+  .then((experience) => {
+    return models.Experience.forge({
+      users_id: 2,
+      name: 'education',
+      role: 'Business & Economics Exchange',
+      description: 'Courses in Chinese, finance, and sociology',
+      start_date: 2014,
+      end_date: 2014,
+      organization: 'Fudan University'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create experience');
+    throw err;
+  })  
 
   //user 3
   .then((user) => {
     return models.Users.forge({
       full_name: 'Lavanya AC',
-      auth_id:'auth0%7C592e5a4f8fb5fe30a672ce8b',
+      auth_id:'592e5a4f8fb5fe30a672ce8b',
       vertical: 'Technology',
       github_url: 'https://github.com/lavanyaac',
       linkedin_url: 'https://www.linkedin.com/in/lavanya-ammi-chandrashekara-02a21713b/',
       image: 'https://avatars0.githubusercontent.com/u/25909813?v=3&s=460',
       summary: 'I am a full stack developer',
+      daily_all_matches: '[{"profile":[{"id":2,"auth_id":null,"full_name":"Alan Zheng","vertical":"Finance/Banking","github_url":"https://github.com/aszheng","linkedin_url":"https://www.linkedin.com/in/aszheng/","image":"https://avatars0.githubusercontent.com/u/20808751?v=3&s=460","summary":"I like pandas. I like product. I like to code.","daily_all_matches":null,"created_at":"2017-06-14T00:10:13.382Z","updated_at":"2017-06-14T00:10:13.382Z"}],"profExp":[{"id":4,"users_id":2,"name":"professional","role":"Finance & Operations Analyst","description":"Excel Stuff","start_date":2015,"end_date":2017,"organization":"App Annie","created_at":"2017-06-14T00:10:13.424Z","updated_at":"2017-06-14T00:10:13.424Z"},{"id":5,"users_id":2,"name":"professional","role":"Technology Investment Banking Analyst","description":"A lot of Excel Stuff","start_date":2014,"end_date":2015,"organization":"BMO Capital Markets","created_at":"2017-06-14T00:10:13.425Z","updated_at":"2017-06-14T00:10:13.425Z"},{"id":6,"users_id":2,"name":"professional","role":"Investment Banking Summer Analyst","description":"Baby Excel Stuff","start_date":2013,"end_date":2013,"organization":"Imperial Capital","created_at":"2017-06-14T00:10:13.429Z","updated_at":"2017-06-14T00:10:13.429Z"}],"eduExp":[{"id":11,"users_id":2,"name":"education","role":"B.S. Business Administration","description":"Concentration in Entrepreneurship & Technology, Haas External Case Competiton Team","start_date":2010,"end_date":2014,"organization":"UC Berkeley","created_at":"2017-06-14T00:10:13.450Z","updated_at":"2017-06-14T00:10:13.450Z"},{"id":12,"users_id":2,"name":"education","role":"Business & Economics Exchange","description":"Courses in Chinese, finance, and sociology","start_date":2014,"end_date":2014,"organization":"Fudan University","created_at":"2017-06-14T00:10:13.453Z","updated_at":"2017-06-14T00:10:13.453Z"}],"projExp":[{"id":7,"users_id":2,"name":"projects","role":"Pursumé","description":"You see this app? We made this app!","start_date":2017,"end_date":null,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.432Z","updated_at":"2017-06-14T00:10:13.432Z"},{"id":8,"users_id":2,"name":"projects","role":"Viator","description":"Itinerary builder for the foodie and social traveler","start_date":2017,"end_date":2017,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.435Z","updated_at":"2017-06-14T00:10:13.435Z"},{"id":9,"users_id":2,"name":"projects","role":"Laugh Local.ly","description":"Airbnb and Eventbrite for local comedians","start_date":2017,"end_date":2017,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.437Z","updated_at":"2017-06-14T00:10:13.437Z"},{"id":10,"users_id":2,"name":"projects","role":"RobinHack","description":"Dynamic stock portfolio budgeting app built in 48-hours","start_date":2017,"end_date":2017,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.445Z","updated_at":"2017-06-14T00:10:13.445Z"}]},{"profile":[{"id":9,"auth_id":null,"full_name":"Jon Eric Escobedo, E.I.T.","vertical":"Technology","github_url":"https://github.com/JonEricEscobedo","linkedin_url":"https://www.linkedin.com/in/jonericescobedo/","image":"https://avatars3.githubusercontent.com/u/22602434?v=3&s=460","summary":"Project Manager with over five years of environmental experience advising environmental professionals in interpreting federal and state air regulatory guidelines and designing best in class customized plans to capture air pollutants for regulatory compliance demonstration. ","daily_all_matches":null,"created_at":"2017-06-14T00:10:13.580Z","updated_at":"2017-06-14T00:10:13.580Z"}],"profExp":[{"id":31,"users_id":9,"name":"professional","role":"Sales Engineer / Project Manager","description":"Advise industrial professionals and engineers in interpreting federal and state air quality guidelines","start_date":2012,"end_date":2016,"organization":"Enthalpy Analytical","created_at":"2017-06-14T00:10:13.596Z","updated_at":"2017-06-14T00:10:13.596Z"}],"eduExp":[{"id":33,"users_id":9,"name":"education","role":"B.S. Civil Engineering","description":"","start_date":2004,"end_date":2009,"organization":"UC Davis","created_at":"2017-06-14T00:10:13.601Z","updated_at":"2017-06-14T00:10:13.601Z"}],"projExp":[{"id":32,"users_id":9,"name":"projects","role":"This Thesis","description":"An app to write about product!","start_date":2017,"end_date":null,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.599Z","updated_at":"2017-06-14T00:10:13.599Z"}]},{"profile":[{"id":6,"auth_id":null,"full_name":"Ming Feng","vertical":"Biomedical","github_url":"https://github.com/minggfeng","linkedin_url":"https://www.linkedin.com/in/minggfeng/","image":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAADhAAAAJGNkNmRlMGJjLTZiNWItNDBhZC1hOTRiLTc4MWU1NDZiMjJhMw.jpg","summary":"Full stack engineer currently looking for opportunities","daily_all_matches":null,"created_at":"2017-06-14T00:10:13.521Z","updated_at":"2017-06-14T00:10:13.521Z"}],"profExp":[{"id":22,"users_id":6,"name":"professional","role":"Clinical Systems Analyst","description":"Supported the applications of OpTime, Anesthesia, and the surgical component of Phoenix.","start_date":2014,"end_date":2017,"organization":"Stanford Health Care","created_at":"2017-06-14T00:10:13.538Z","updated_at":"2017-06-14T00:10:13.538Z"}],"eduExp":[{"id":24,"users_id":6,"name":"education","role":"BS Chemistry","description":"traveled the world too!","start_date":2006,"end_date":2010,"organization":"University of Wisconsin-Madision","created_at":"2017-06-14T00:10:13.542Z","updated_at":"2017-06-14T00:10:13.542Z"}],"projExp":[{"id":23,"users_id":6,"name":"projects","role":"This legacy","description":"skooled app!","start_date":2017,"end_date":2016,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.540Z","updated_at":"2017-06-14T00:10:13.540Z"}]}]'      
     }).save()
   })
   .error(err => {
@@ -367,12 +458,13 @@ exports.seed = function (knex, Promise) {
   .then((user) => {
     return models.Users.forge({
       full_name: 'Anthony Wong',
+      auth_id:'5932f1d6637b7d385d9b1e89',   
       vertical: 'Technology',
       github_url: 'https://github.com/shrimpwongton',
       linkedin_url: 'https://www.linkedin.com/in/anthonywg/',
       image: 'https://avatars0.githubusercontent.com/u/6591210?v=3&s=400',
       summary: 'Android Developer transitioning towards Full Stack Software Engineering.',
-    }).save()
+      daily_all_matches: '[{"profile":[{"id":2,"auth_id":null,"full_name":"Alan Zheng","vertical":"Finance/Banking","github_url":"https://github.com/aszheng","linkedin_url":"https://www.linkedin.com/in/aszheng/","image":"https://avatars0.githubusercontent.com/u/20808751?v=3&s=460","summary":"I like pandas. I like product. I like to code.","daily_all_matches":null,"created_at":"2017-06-14T00:10:13.382Z","updated_at":"2017-06-14T00:10:13.382Z"}],"profExp":[{"id":4,"users_id":2,"name":"professional","role":"Finance & Operations Analyst","description":"Excel Stuff","start_date":2015,"end_date":2017,"organization":"App Annie","created_at":"2017-06-14T00:10:13.424Z","updated_at":"2017-06-14T00:10:13.424Z"},{"id":5,"users_id":2,"name":"professional","role":"Technology Investment Banking Analyst","description":"A lot of Excel Stuff","start_date":2014,"end_date":2015,"organization":"BMO Capital Markets","created_at":"2017-06-14T00:10:13.425Z","updated_at":"2017-06-14T00:10:13.425Z"},{"id":6,"users_id":2,"name":"professional","role":"Investment Banking Summer Analyst","description":"Baby Excel Stuff","start_date":2013,"end_date":2013,"organization":"Imperial Capital","created_at":"2017-06-14T00:10:13.429Z","updated_at":"2017-06-14T00:10:13.429Z"}],"eduExp":[{"id":11,"users_id":2,"name":"education","role":"B.S. Business Administration","description":"Concentration in Entrepreneurship & Technology, Haas External Case Competiton Team","start_date":2010,"end_date":2014,"organization":"UC Berkeley","created_at":"2017-06-14T00:10:13.450Z","updated_at":"2017-06-14T00:10:13.450Z"},{"id":12,"users_id":2,"name":"education","role":"Business & Economics Exchange","description":"Courses in Chinese, finance, and sociology","start_date":2014,"end_date":2014,"organization":"Fudan University","created_at":"2017-06-14T00:10:13.453Z","updated_at":"2017-06-14T00:10:13.453Z"}],"projExp":[{"id":7,"users_id":2,"name":"projects","role":"Pursumé","description":"You see this app? We made this app!","start_date":2017,"end_date":null,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.432Z","updated_at":"2017-06-14T00:10:13.432Z"},{"id":8,"users_id":2,"name":"projects","role":"Viator","description":"Itinerary builder for the foodie and social traveler","start_date":2017,"end_date":2017,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.435Z","updated_at":"2017-06-14T00:10:13.435Z"},{"id":9,"users_id":2,"name":"projects","role":"Laugh Local.ly","description":"Airbnb and Eventbrite for local comedians","start_date":2017,"end_date":2017,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.437Z","updated_at":"2017-06-14T00:10:13.437Z"},{"id":10,"users_id":2,"name":"projects","role":"RobinHack","description":"Dynamic stock portfolio budgeting app built in 48-hours","start_date":2017,"end_date":2017,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.445Z","updated_at":"2017-06-14T00:10:13.445Z"}]},{"profile":[{"id":9,"auth_id":null,"full_name":"Jon Eric Escobedo, E.I.T.","vertical":"Technology","github_url":"https://github.com/JonEricEscobedo","linkedin_url":"https://www.linkedin.com/in/jonericescobedo/","image":"https://avatars3.githubusercontent.com/u/22602434?v=3&s=460","summary":"Project Manager with over five years of environmental experience advising environmental professionals in interpreting federal and state air regulatory guidelines and designing best in class customized plans to capture air pollutants for regulatory compliance demonstration. ","daily_all_matches":null,"created_at":"2017-06-14T00:10:13.580Z","updated_at":"2017-06-14T00:10:13.580Z"}],"profExp":[{"id":31,"users_id":9,"name":"professional","role":"Sales Engineer / Project Manager","description":"Advise industrial professionals and engineers in interpreting federal and state air quality guidelines","start_date":2012,"end_date":2016,"organization":"Enthalpy Analytical","created_at":"2017-06-14T00:10:13.596Z","updated_at":"2017-06-14T00:10:13.596Z"}],"eduExp":[{"id":33,"users_id":9,"name":"education","role":"B.S. Civil Engineering","description":"","start_date":2004,"end_date":2009,"organization":"UC Davis","created_at":"2017-06-14T00:10:13.601Z","updated_at":"2017-06-14T00:10:13.601Z"}],"projExp":[{"id":32,"users_id":9,"name":"projects","role":"This Thesis","description":"An app to write about product!","start_date":2017,"end_date":null,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.599Z","updated_at":"2017-06-14T00:10:13.599Z"}]},{"profile":[{"id":6,"auth_id":null,"full_name":"Ming Feng","vertical":"Biomedical","github_url":"https://github.com/minggfeng","linkedin_url":"https://www.linkedin.com/in/minggfeng/","image":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAADhAAAAJGNkNmRlMGJjLTZiNWItNDBhZC1hOTRiLTc4MWU1NDZiMjJhMw.jpg","summary":"Full stack engineer currently looking for opportunities","daily_all_matches":null,"created_at":"2017-06-14T00:10:13.521Z","updated_at":"2017-06-14T00:10:13.521Z"}],"profExp":[{"id":22,"users_id":6,"name":"professional","role":"Clinical Systems Analyst","description":"Supported the applications of OpTime, Anesthesia, and the surgical component of Phoenix.","start_date":2014,"end_date":2017,"organization":"Stanford Health Care","created_at":"2017-06-14T00:10:13.538Z","updated_at":"2017-06-14T00:10:13.538Z"}],"eduExp":[{"id":24,"users_id":6,"name":"education","role":"BS Chemistry","description":"traveled the world too!","start_date":2006,"end_date":2010,"organization":"University of Wisconsin-Madision","created_at":"2017-06-14T00:10:13.542Z","updated_at":"2017-06-14T00:10:13.542Z"}],"projExp":[{"id":23,"users_id":6,"name":"projects","role":"This legacy","description":"skooled app!","start_date":2017,"end_date":2016,"organization":"Hack Reactor","created_at":"2017-06-14T00:10:13.540Z","updated_at":"2017-06-14T00:10:13.540Z"}]}]'    }).save()
   })
   .error(err => {
     console.error('ERROR: failed to create user');
@@ -2637,129 +2729,6 @@ exports.seed = function (knex, Promise) {
     console.error('ERROR: failed to create experience');
     throw err;
   })
-
-  //user22
-  .then((user) => {
-    return models.Users.forge({
-      full_name: 'Apurva Shastry',
-      vertical: 'Technology',
-      github_url: 'https://github.com/shrimpwongton',
-      linkedin_url: 'https://www.linkedin.com/in/anthonywg/',
-      image: 'https://avatars0.githubusercontent.com/u/6591210?v=3&s=400',
-      summary: 'Android Developer transitioning towards Full Stack Software Engineering.',
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create user');
-    throw err;
-  })
-  .then((login) => {
-    return models.Login.forge({
-      username: 'shrimpwongton',
-      password: 'password'
-    }).save()
-  })
-  .then((tag) => {
-    return models.Users_tag.forge({
-      users_id: 4,
-      tag_id: 12
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create users_tag');
-    throw err;
-  })
-  .then((tag) => {
-    return models.Users_tag.forge({
-      users_id: 4,
-      tag_id: 8
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create users_tag');
-    throw err;
-  })
-  .then((tag) => {
-    return models.Users_tag.forge({
-      users_id: 4,
-      tag_id: 6
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create users_tag');
-    throw err;
-  })
-  .then((tag) => {
-    return models.Users_tag.forge({
-      users_id: 4,
-      tag_id: 13
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create users_tag');
-    throw err;
-  })
-  .then((tag) => {
-    return models.Users_tag.forge({
-      users_id: 4,
-      tag_id: 14
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create users_tag');
-    throw err;
-  })
-  .error(err => {
-    console.error('ERROR: failed to create login');
-    throw err;
-  })
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 4,
-      name: 'professional',
-      role: 'Andriod Developer',
-      description: 'Java Baby',
-      start_date: 2016,
-      end_date: 2016,
-      organization: 'DabKick'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 4,
-      name: 'projects',
-      role: 'Viator',
-      description: 'Material UI',
-      start_date: 2017,
-      end_date: 2017,
-      organization: 'Hack Reactor'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })
-  .then((experience) => {
-    return models.Experience.forge({
-      users_id: 4,
-      name: 'education',
-      role: 'Student',
-      description: 'BS Computer Science',
-      start_date: 2012,
-      end_date: 2016,
-      organization: 'UC San Diego'
-    }).save()
-  })
-  .error(err => {
-    console.error('ERROR: failed to create experience');
-    throw err;
-  })
-
-
 };
 
 
