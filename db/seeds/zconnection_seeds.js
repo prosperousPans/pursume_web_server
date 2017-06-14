@@ -394,7 +394,7 @@ exports.seed = function (knex, Promise) {
   .error(err => {
     console.error('ERROR: failed to create connection');
     throw err;
-  })  
+  })
   .then((connection) => {
     return models.Connection.forge({
       users_a_id: 4,
@@ -1757,6 +1757,66 @@ exports.seed = function (knex, Promise) {
       users_b_id: 19,
       status: 'accept',
       reason: 'professional'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 21,
+      users_b_id: 2,
+      status: 'accept',
+      reason: 'projects'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 21,
+      users_b_id: 5,
+      status: 'accept',
+      reason: 'professional'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 21,
+      users_b_id: 12,
+      status: 'accept',
+      reason: 'projects'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 21,
+      users_b_id: 15,
+      status: 'accept',
+      reason: 'personal'
+    }).save()
+  })
+  .error(err => {
+    console.error('ERROR: failed to create connection');
+    throw err;
+  })
+  .then((connection) => {
+    return models.Connection.forge({
+      users_a_id: 21,
+      users_b_id: 18,
+      status: 'accept',
+      reason: 'personal'
     }).save()
   })
   .error(err => {
