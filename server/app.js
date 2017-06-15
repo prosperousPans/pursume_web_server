@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 // *** FOR PASSPORT AUTH ***
 // app.use('/', routes.auth);
 // app.use('/', routes.api);
-// app.use('/api', routes.api);
+app.use('/api', routes.api);
 // app.use('/api/profiles', routes.profiles);
 
 // *** FOR RETRIEVING USERS
