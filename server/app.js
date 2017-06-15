@@ -50,7 +50,7 @@ app.use('/insert-reason', routes.insertReason);
 app.use('/get-connect', routes.getConnect);
 
 // *** FOR CHAT
-app.use('/chat-list', routes.chat);
+// app.use('/chat-list', routes.chat);
 app.use('/profile-user', routes.profile);
 app.use('/login', routes.login);
 

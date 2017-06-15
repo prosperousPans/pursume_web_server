@@ -9,7 +9,7 @@ module.exports.checkMatch = require('./checkMatch');
 module.exports.insertReason = require('./insertReason');
 
 // chat
-module.exports.chat = require('./chat');
+// module.exports.chat = require('./chat');
 module.exports.profile = require('./profile');
 module.exports.login = require('./login');
 
@@ -23,4 +23,3 @@ module.exports.recommendation = require('./recommendation');
 module.exports.priorityRecommendation = require('./priorityRecommendation');
 
 module.exports.getMatches = require('./getMatches');
-
