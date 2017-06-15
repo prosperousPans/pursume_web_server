@@ -1,5 +1,5 @@
 const neo4j = require('neo4j-driver').v1;
-const driver = neo4j.driver("bolt://localhost", neo4j.auth.basic("neo4j", "neo4j"));
+const driver = neo4j.driver("bolt://localhost", neo4j.auth.basic("neo4j", "password"));
 const query = require('./obtainQuery.js')
 
 module.exports.getRecommendation = (req, res, next) => {
@@ -8,6 +8,8 @@ module.exports.getRecommendation = (req, res, next) => {
     MATCH (me:Users)-[:Connection]-(connected:Users)-[:Connection]-(potential:Users)
     WHERE (me)-[:MATCHED]-(connected)
     AND NOT (me)-[:Connection]-(potential)
+    AND NOT (connected)-[:Connection {status:'reject'}]->(potential)
+    AND NOT (connected)<-[:Connection {status:'reject'}]-(potential)
     RETURN count(potential) as PotentientialMatch, potential.id as Suggested_User_Id
     ORDER BY PotentientialMatch DESC`;
 
