@@ -9,8 +9,14 @@ COPY . /usr/src/app/
 
 RUN npm update              && \
     npm install -g grunt    && \
+    npm install node
     npm install
 
 EXPOSE 3000
 
 CMD wait 10 && npm run docker
+
+CMD curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+CMD sudo apt-get install -y nodejs
+
+CMD node
