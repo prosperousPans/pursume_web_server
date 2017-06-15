@@ -9,7 +9,7 @@ module.exports.CheckMatch = require('./checkMatch');
 module.exports.InsertReason = require('./insertReason');
 
 // chat
-module.exports.Chat = require('./chat');
+// module.exports.Chat = require('./chat');
 
 // dashboard
 module.exports.GetConnect = require('./getConnect');
@@ -19,4 +19,3 @@ module.exports.CreateGraphDB = require('./createGraphDB');
 module.exports.PopulateFullGraphDB = require('./populateFullGraphDB');
 module.exports.Profile = require('./profile');
 module.exports.Login = require('./login');
-
