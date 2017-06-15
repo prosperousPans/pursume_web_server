@@ -9,7 +9,6 @@ COPY . /usr/src/app/
 
 RUN npm update              && \
     npm install -g grunt    && \
-    npm install node
     npm install
 
 EXPOSE 3000
