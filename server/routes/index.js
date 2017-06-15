@@ -1,3 +1,6 @@
+// Hello World
+module.exports.api = require('./api');
+
 // retrieving matches
 module.exports.users = require('./users');
 module.exports.getProfile = require('./getProfile');
