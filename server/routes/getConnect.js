@@ -15,4 +15,7 @@ router.route('/get-reason')
 router.route('/get-vertical')
   .get(GetConnectController.getVertical)
 
+router.route('/get-all-industry')
+  .get(GetConnectController.getAllIndustry)
+
 module.exports = router;
