@@ -1,6 +1,14 @@
 const neo4j = require('neo4j-driver').v1;
-const driver = neo4j.driver("bolt://localhost", neo4j.auth.basic("neo4j", "password"));
-const query = require('./obtainQuery.js')
+const driver = neo4j.driver("bolt://172.20.0.1", neo4j.auth.basic("neo4j", "password"));
+
+const query = require('../controllers/populateFullGraphDB.js')
+
+let queryStart;
+
+var populate = query.populateFullGraphDB(function (query) {
+  queryStart = query
+});
+
 
 module.exports.getRecommendation = (req, res, next) => {
   let userId = req.query.id || 2
@@ -18,7 +26,7 @@ module.exports.getRecommendation = (req, res, next) => {
   let sent = false;
   let session = driver.session();
     session
-      .run(query.query + queryEnding)
+      .run(queryStart + queryEnding)
       .subscribe({
         onNext: function(record) {
          result.push(record._fields)

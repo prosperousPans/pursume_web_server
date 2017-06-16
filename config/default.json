@@ -3,9 +3,9 @@
     "client": "postgresql",
     "connection": {
       "database": "pursume",
-      "user": "postgres1",
-      "password": "postgres",
-      "host": "pg",
+      "user": "postgres",
+      "password": "",
+      "host": "172.20.0.1",
       "port": 5432
     },
     "pool": {
