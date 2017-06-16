@@ -35,8 +35,7 @@ module.exports.getPriorityRecommendation = (req, res, next) => {
           if ( RandResultIndex >= 2 && sent === false) {
             sent = true;
             session.close();
-            // res.status(200).send([result[RandResultIndex], {'Priority Result Length': result.length}]);
-
+            res.status(200).send([result[RandResultIndex], {'Priority Result Length': result.length}]);
           } else {
             res.status(200).send('null');
           }
