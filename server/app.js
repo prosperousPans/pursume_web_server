@@ -14,12 +14,12 @@ const app = express();
 // const app = require('../app');
 
 
-app.use(jwtCheck);
+// app.use(jwtCheck);
 
 // app.use(middleware.morgan('dev'));
 // app.use(middleware.cookieParser());
-// app.use(middleware.bodyParser.urlencoded({extended: false}));
-// app.use(middleware.bodyParser.json());
+app.use(middleware.bodyParser.urlencoded({extended: false}));
+app.use(middleware.bodyParser.json());
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'ejs');
 
