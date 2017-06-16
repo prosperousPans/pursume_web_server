@@ -1,7 +1,8 @@
 const models = require('../../db/models');
 
-module.exports.populateFullGraphDB = (req, res) => {
-  models.Users.forge()
+module.exports.populateFullGraphDB = (cb) => {
+  let query = '';
+  return models.Users.forge()
     .fetchAll({columns: ['id', 'full_name']})
     .then(users => {
       return users;
@@ -31,14 +32,21 @@ module.exports.populateFullGraphDB = (req, res) => {
               return [params[0], params[1], params[2], params[3], tag];
             })
             .then(params => {
-              res.status(200).send(createGDBQuery(params[0], params[1], params[2], params[3], params[4]));
+              // res.status(200).send(createGDBQuery(params[0], params[1], params[2], params[3], params[4]));
+              query = createGDBQuery(params[0], params[1], params[2], params[3], params[4])
+              // console.log('query', query)
+              // return query;)
+              cb(query);
             })
           })
         })
       })
     })
+    // console.log('query2', query)
+    return query
+// populateFullGraphDB(function(query) {
+  // do something with that query here
 }
-
 let createGDBQuery = (users, connections, experience, users_tag, tag) => {
   let query = '';
 

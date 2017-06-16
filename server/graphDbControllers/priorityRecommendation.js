@@ -1,8 +1,16 @@
 const neo4j = require('neo4j-driver').v1;
 const driver = neo4j.driver("bolt://172.20.0.1", neo4j.auth.basic("neo4j", "password"));
-const query = require('./obtainQuery.js')
 
-module.exports.getPriorityRecommendation = (req, res, next) => {
+const query = require('../controllers/populateFullGraphDB.js')
+
+let queryStart;
+
+var populate = query.populateFullGraphDB(function (query) {
+  queryStart = query
+});
+
+
+module.exports.getPriorityRecommendation = (req, cb, next) => {
   let userId = req.query.id || 2
   let queryEnding = `WITH (\`${userId}\`) as me
     MATCH (me:Users)-[:Connection]-(connected:Users)
@@ -14,9 +22,10 @@ module.exports.getPriorityRecommendation = (req, res, next) => {
 
   let result = [];
   let sent = false;
+  let graphDbQuery;
   let session = driver.session();
     session
-      .run(query.query + queryEnding)
+      .run(queryStart + queryEnding)
       .subscribe({
         onNext: function(record) {
          result.push(record._fields)
@@ -27,9 +36,13 @@ module.exports.getPriorityRecommendation = (req, res, next) => {
           if ( RandResultIndex >= 2 && sent === false) {
             sent = true;
             session.close();
-            res.status(200).send([result[RandResultIndex], {'Priority Result Length': result.length}]);
+            // res.status(200).send([result[RandResultIndex], {'Priority Result Length': result.length}]);
+            graphDbQuery = [result[RandResultIndex], {'Priority Result Length': result.length}]
+            cb(graphDbQuery)
           } else {
-            res.status(200).send('null');
+            // res.status(200).send('null');
+            graphDbQuery = null;
+            cb(null);
           }
           if ( sent === false ) {
             session.close();
@@ -40,4 +53,5 @@ module.exports.getPriorityRecommendation = (req, res, next) => {
           console.log(error);
         }
       });
+      return graphDbQuery;
 };

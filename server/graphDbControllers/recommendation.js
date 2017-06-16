@@ -1,8 +1,16 @@
 const neo4j = require('neo4j-driver').v1;
 const driver = neo4j.driver("bolt://172.20.0.1", neo4j.auth.basic("neo4j", "password"));
-const query = require('./obtainQuery.js')
 
-module.exports.getRecommendation = (req, res, next) => {
+const query = require('../controllers/populateFullGraphDB.js')
+
+let queryStart;
+
+var populate = query.populateFullGraphDB(function (query) {
+  queryStart = query
+});
+
+
+module.exports.getRecommendation = (req, cb) => {
   let userId = req.query.id || 2
   let queryEnding = `WITH (\`${userId}\`) as me
     MATCH (me:Users)-[:Connection]-(connected:Users)-[:Connection]-(potential:Users)
@@ -16,9 +24,10 @@ module.exports.getRecommendation = (req, res, next) => {
 
   let result = [];
   let sent = false;
+  let graphDbQuery;
   let session = driver.session();
     session
-      .run(query.query + queryEnding)
+      .run(queryStart + queryEnding)
       .subscribe({
         onNext: function(record) {
          result.push(record._fields)
@@ -28,9 +37,13 @@ module.exports.getRecommendation = (req, res, next) => {
             if ( Math.random() > .5 && sent === false) {
               sent = true;
               session.close();
-              res.status(200).send([recommendation, {'Recommendation Result Length': result.length}])
+              // res.status(200).send([recommendation, {'Recommendation Result Length': result.length}])
+              graphDbQuery = [recommendation, {'Recommendation Result Length': result.length}]
+              cb(graphDbQuery)
             } else {
-              res.status(200).send('null')
+              // res.status(200).send('null')
+              graphDbQuery = null;
+              cb(null);
             }
           });
           if ( sent === false ) {
@@ -42,4 +55,5 @@ module.exports.getRecommendation = (req, res, next) => {
           console.log(error);
         }
       });
+      return graphDbQuery;
 };

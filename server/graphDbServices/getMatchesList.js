@@ -1,17 +1,27 @@
 const axios = require('axios');
 const Promise = require('bluebird');
 
+const getRec = require('../graphDbControllers/recommendation.js')
+const getPriRec = require('../graphDbControllers/priorityRecommendation.js')
+const getRand = require('../controllers/users.js')
+
+
 module.exports.getMatches = (req, res) => {
 
   var matchArray = [];
   var hash = {'null': true};
   var possibleMatch = [];
 
+  var response;
+
 
   var getPrioirtyMatch = function () {
     possibleMatch = [];
     return new Promise(function(resolve, reject) {
-      axios.get('http://localhost:3000/priority-recommendation')
+      // axios.get('http://localhost:3000/priority-recommendation')
+      return getPriRec.getPriorityRecommendation(req, function (priority) {
+        response = priority;
+      })
       .then(function(response) {
         if ( response.data !== null ) {
           possibleMatch[0] = Number(response.data[0][1]);
@@ -26,7 +36,11 @@ module.exports.getMatches = (req, res) => {
 
   var getRecommendMatch = function (possibleMatch) {
     return new Promise(function(resolve, reject) {
-      axios.get('http://localhost:3000/recommendation')
+      // axios.get('http://localhost:3000/recommendation')
+      response = getRec.getRecommendation(req, function (recommendation) {
+        response = recommendation;
+      })
+      return response
       .then(function(response) {
         if ( response.data !== null ) {
           possibleMatch[1] = Number(response.data[0][1]);
@@ -41,7 +55,8 @@ module.exports.getMatches = (req, res) => {
 
   var getRandomMatch = function (possibleMatch) {
     return new Promise(function(resolve, reject) {
-      axios.get('http://localhost:3000/users')
+      // axios.get('http://localhost:3000/users')
+      response = getRand.getNewUsers
       .then(function(response) {
         possibleMatch[2] = response.data.id;
         // console.log('3', possibleMatch)
