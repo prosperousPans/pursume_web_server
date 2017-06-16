@@ -3,7 +3,7 @@ const axios = require('axios');
 let query = '';
 
 if ( process.env.DATABASE_URL ) {
-  axios.get('http://localhost:3333/populate-full-graphDB')
+  axios.get('http://localhost:5555/populate-full-graphDB')
     .then(function (response) {
       module.exports.query = response.data;
     })
