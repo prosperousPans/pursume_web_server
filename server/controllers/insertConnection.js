@@ -15,11 +15,11 @@ module.exports.insertConnection = (req, res) => {
 }
 
 module.exports.sliceMatch = (req, res) => {
-  // knex
-  // .raw("update users set daily_all_matches = ? where id = ?;", [req.body.daily_all_matches, req.body.id])
-  // .then(result => {
-  //   console.log('DONE')
-  //   res.status(202).send(result);
-  // });
-  res.send('TEST')
+  knex
+  .raw("update users set daily_all_matches = ? where id = ?;", [req.body.daily_all_matches, req.body.id])
+  .then(result => {
+    console.log('DONE')
+    res.status(202).send(result);
+  });
+  // res.send('TEST')
 }
