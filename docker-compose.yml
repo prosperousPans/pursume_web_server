@@ -13,8 +13,8 @@ services:
       ports:
         - "5432:5432"
       environment:
-        POSTGRES_USER: postgres1
-        POSTGRES_PASSWORD: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD:
         POSTGRES_DB: pursume
     web:
       build: .
@@ -23,8 +23,9 @@ services:
       depends_on:
         - pgdb
       environment:
-        SEQ_DB: pursume
-        SEQ_USER: postgres1
-        SEQ_PW: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD:
+        POSTGRES_DB: pursume
         PORT: 5432
-        DATABASE_URL: postgres://postgres1:postgres@pg:5432?sslmode=disable
+        DATABASE_URL: postgres://pgdb
+      tty: true
