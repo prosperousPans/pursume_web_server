@@ -10,7 +10,7 @@ var populate = query.populateFullGraphDB(function (query) {
 });
 
 
-module.exports.getRecommendation = (req, cb) => {
+module.exports.getRecommendation = (req, res, next) => {
   let userId = req.query.id || 2
   let queryEnding = `WITH (\`${userId}\`) as me
     MATCH (me:Users)-[:Connection]-(connected:Users)-[:Connection]-(potential:Users)
@@ -24,7 +24,6 @@ module.exports.getRecommendation = (req, cb) => {
 
   let result = [];
   let sent = false;
-  let graphDbQuery;
   let session = driver.session();
     session
       .run(queryStart + queryEnding)
@@ -37,13 +36,9 @@ module.exports.getRecommendation = (req, cb) => {
             if ( Math.random() > .5 && sent === false) {
               sent = true;
               session.close();
-              // res.status(200).send([recommendation, {'Recommendation Result Length': result.length}])
-              graphDbQuery = [recommendation, {'Recommendation Result Length': result.length}]
-              cb(graphDbQuery)
+              res.status(200).send([recommendation, {'Recommendation Result Length': result.length}])
             } else {
-              // res.status(200).send('null')
-              graphDbQuery = null;
-              cb(null);
+              res.status(200).send('null')
             }
           });
           if ( sent === false ) {
@@ -55,5 +50,4 @@ module.exports.getRecommendation = (req, cb) => {
           console.log(error);
         }
       });
-      return graphDbQuery;
 };

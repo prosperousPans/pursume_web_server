@@ -1,8 +1,8 @@
 const models = require('../../db/models');
 
-module.exports.getNewUsers = (req, res, cb) => {
+module.exports.getNewUsers = (req, res) => {
   let result = null;
-  return models.Users.fetchAll()
+  models.Users.fetchAll()
     .then(users => {
       let jsonUsers = JSON.parse(JSON.stringify(users));
       let numOfUsers = jsonUsers.length;
@@ -48,9 +48,7 @@ module.exports.getNewUsers = (req, res, cb) => {
                   result = allUsers[userB_idx];
                   if ( result && sent === false) {
                     sent = true
-                    // res.status(200).send(result);
-                    cb(result);
-                    count += maxcount;
+                    res.status(200).send(result);
                   }
                 }
               })

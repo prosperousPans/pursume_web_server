@@ -10,7 +10,7 @@ var populate = query.populateFullGraphDB(function (query) {
 });
 
 
-module.exports.getPriorityRecommendation = (req, cb, next) => {
+module.exports.getPriorityRecommendation = (req, res, next) => {
   let userId = req.query.id || 2
   let queryEnding = `WITH (\`${userId}\`) as me
     MATCH (me:Users)-[:Connection]-(connected:Users)
@@ -22,7 +22,6 @@ module.exports.getPriorityRecommendation = (req, cb, next) => {
 
   let result = [];
   let sent = false;
-  let graphDbQuery;
   let session = driver.session();
     session
       .run(queryStart + queryEnding)
@@ -37,12 +36,9 @@ module.exports.getPriorityRecommendation = (req, cb, next) => {
             sent = true;
             session.close();
             // res.status(200).send([result[RandResultIndex], {'Priority Result Length': result.length}]);
-            graphDbQuery = [result[RandResultIndex], {'Priority Result Length': result.length}]
-            cb(graphDbQuery)
+
           } else {
-            // res.status(200).send('null');
-            graphDbQuery = null;
-            cb(null);
+            res.status(200).send('null');
           }
           if ( sent === false ) {
             session.close();
@@ -53,5 +49,4 @@ module.exports.getPriorityRecommendation = (req, cb, next) => {
           console.log(error);
         }
       });
-      return graphDbQuery;
 };
