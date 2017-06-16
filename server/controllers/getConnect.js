@@ -49,8 +49,28 @@ module.exports.getVertical = (req, res) => {
   .raw("select vertical from users where id in (select users_a_id from connection where users_b_id = ? and status = ?) group by vertical order by count(*) desc limit 1;", 
     [req.query.users_b_id,req.query.status])
   .then(result => {
-    console.log('result raw', result.rows[0].vertical)
     let topVertical = result.rows[0].vertical;
     res.send(topVertical)
+  });
+};
+
+module.exports.getAllIndustry = (req, res) => {  
+  console.log('getAllIndustry');
+  console.log('req.query.users_b_id,req.query.status', req.query.users_b_id, req.query.status)
+  knex
+  .raw("select vertical from users where id in (select users_a_id from connection where users_b_id = ? and status = ?);", 
+    [req.query.users_b_id,req.query.status])
+  .then(result => {
+
+    var industryCt = {};
+    for (var i=0; i< result.rows.length; i++){
+      if (industryCt[result.rows[i].vertical]) {
+        industryCt[result.rows[i].vertical]++
+      } else {
+        industryCt[result.rows[i].vertical] = 1; 
+      }
+    }
+
+    res.send(industryCt)
   });
 };
