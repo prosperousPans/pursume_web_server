@@ -9,7 +9,7 @@ module.exports.CheckMatch = require('./checkMatch');
 module.exports.InsertReason = require('./insertReason');
 
 // chat
-// module.exports.Chat = require('./chat');
+module.exports.Chat = require('./chat');
 
 // dashboard
 module.exports.GetConnect = require('./getConnect');

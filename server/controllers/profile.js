@@ -4,7 +4,8 @@ const knex = require('knex')(require('../../knexfile'));
 
 module.exports.getUserDetails = (req, res) => {
   console.log('from getUserDetails', req.headers)
-  var authid = req.query.authid.replace('|', '%7C')
+  // var authid = req.query.authid.replace('|', '%7C')
+  var authid = req.query.authid;
   knex('users')
     .where('auth_id', authid)
     .then((data) => {
@@ -17,7 +18,8 @@ module.exports.getUserDetails = (req, res) => {
 };
 
 module.exports.getUserTags = (req, res) => {
-  var authid = req.query.authid.replace('|', '%7C')
+  // var authid = req.query.authid.replace('|', '%7C')
+  var authid = req.query.authid;
   knex('users_tag')
     .join('tag as t', 't.id', 'users_tag.tag_id')
     .join('users as u', 'u.id', 'users_tag.users_id')
@@ -33,7 +35,8 @@ module.exports.getUserTags = (req, res) => {
 };
 
 module.exports.getUserExperience = (req, res) => {
-  var authid = req.query.authid.replace('|', '%7C')
+  // var authid = req.query.authid.replace('|', '%7C');
+  var authid = req.query.authid;
   knex('experience')
     .join('users as u', 'u.id', 'experience.users_id')
     .where('u.auth_id', authid)
